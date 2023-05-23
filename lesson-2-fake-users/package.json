@@ -1,0 +1,20 @@
+{
+  "name": "lesson-2-fake-users",
+  "version": "1.0.0",
+  "description": "make fake users, sort and print",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Karen Manasyan",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.0.1",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "type": "module"
+}

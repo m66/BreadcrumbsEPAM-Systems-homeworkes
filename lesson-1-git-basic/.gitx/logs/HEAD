@@ -1,0 +1,15 @@
+0000000000000000000000000000000000000000 cf4b5ce982260204455d729753a0630d23a5aeea Karen Manasyan <kar.manasyan98@gmail.com> 1684331391 +0400	commit (initial): added auth.js file
+cf4b5ce982260204455d729753a0630d23a5aeea cf4b5ce982260204455d729753a0630d23a5aeea Karen Manasyan <kar.manasyan98@gmail.com> 1684331429 +0400	checkout: moving from main to feature/authentication
+cf4b5ce982260204455d729753a0630d23a5aeea 02cfb05ffc2f5c6644f56220ba1257ead459ee4a Karen Manasyan <kar.manasyan98@gmail.com> 1684332297 +0400	commit: make some changes auth.js
+02cfb05ffc2f5c6644f56220ba1257ead459ee4a cf4b5ce982260204455d729753a0630d23a5aeea Karen Manasyan <kar.manasyan98@gmail.com> 1684332385 +0400	checkout: moving from feature/authentication to main
+cf4b5ce982260204455d729753a0630d23a5aeea cf4b5ce982260204455d729753a0630d23a5aeea Karen Manasyan <kar.manasyan98@gmail.com> 1684332407 +0400	checkout: moving from main to hotfix/authentication-fix
+cf4b5ce982260204455d729753a0630d23a5aeea adbb0175e04c9338c3c2a02a328907e49f0c6842 Karen Manasyan <kar.manasyan98@gmail.com> 1684332650 +0400	commit: make changes inside auth.js on Hostfix branch
+adbb0175e04c9338c3c2a02a328907e49f0c6842 02cfb05ffc2f5c6644f56220ba1257ead459ee4a Karen Manasyan <kar.manasyan98@gmail.com> 1684332786 +0400	checkout: moving from hotfix/authentication-fix to feature/authentication
+02cfb05ffc2f5c6644f56220ba1257ead459ee4a f5875b6c524c27ee52aa82a331c591d32c5463f7 Karen Manasyan <kar.manasyan98@gmail.com> 1684333324 +0400	commit (merge): fixed merge conflict
+f5875b6c524c27ee52aa82a331c591d32c5463f7 a13cc46ba2e08add28c116945a52661ce554dde8 Karen Manasyan <kar.manasyan98@gmail.com> 1684333728 +0400	commit: addition X change in auth.js
+a13cc46ba2e08add28c116945a52661ce554dde8 cf4b5ce982260204455d729753a0630d23a5aeea Karen Manasyan <kar.manasyan98@gmail.com> 1684333790 +0400	checkout: moving from feature/authentication to main
+cf4b5ce982260204455d729753a0630d23a5aeea cf4b5ce982260204455d729753a0630d23a5aeea Karen Manasyan <kar.manasyan98@gmail.com> 1684333839 +0400	checkout: moving from main to feature/authorization
+cf4b5ce982260204455d729753a0630d23a5aeea e5c362899a9d3e8e0ba36f8ccaebf193a6ad5d2c Karen Manasyan <kar.manasyan98@gmail.com> 1684334337 +0400	commit: made changes to auth.js on the feature/authorization branch
+e5c362899a9d3e8e0ba36f8ccaebf193a6ad5d2c cf4b5ce982260204455d729753a0630d23a5aeea Karen Manasyan <kar.manasyan98@gmail.com> 1684334392 +0400	checkout: moving from feature/authorization to main
+cf4b5ce982260204455d729753a0630d23a5aeea a13cc46ba2e08add28c116945a52661ce554dde8 Karen Manasyan <kar.manasyan98@gmail.com> 1684334431 +0400	merge feature/authentication: Fast-forward
+a13cc46ba2e08add28c116945a52661ce554dde8 1ca93dd6efbe402489c051b0e4b1d684f85e69bd Karen Manasyan <kar.manasyan98@gmail.com> 1684334623 +0400	commit (merge): fixed last merge conflict

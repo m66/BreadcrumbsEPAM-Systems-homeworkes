@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 cf4b5ce982260204455d729753a0630d23a5aeea Karen Manasyan <kar.manasyan98@gmail.com> 1684331391 +0400	commit (initial): added auth.js file
+cf4b5ce982260204455d729753a0630d23a5aeea a13cc46ba2e08add28c116945a52661ce554dde8 Karen Manasyan <kar.manasyan98@gmail.com> 1684334431 +0400	merge feature/authentication: Fast-forward
+a13cc46ba2e08add28c116945a52661ce554dde8 1ca93dd6efbe402489c051b0e4b1d684f85e69bd Karen Manasyan <kar.manasyan98@gmail.com> 1684334623 +0400	commit (merge): fixed last merge conflict
