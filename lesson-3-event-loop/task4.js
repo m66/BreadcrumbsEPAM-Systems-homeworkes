@@ -38,10 +38,14 @@ setTimeout(() => {
 // the correct answer is ==> 1, 2, 3, 4, 5, 6, 7, 8, 0, 9
 
 /*
-  execution stages
-
-  setImmediate => [1, 2, 3, 4, 5 (microtasks executed immediately), 6, 7, 8]
-  readFile => [0]   ** In the documentation given that the I/O callbacks are executed firs, 
-                    ** but from the previous examples I made sure that this is not that case
-  setTimeout => [9]
+  first fs.readFile<0> is added to the pending phase, 
+  then setImmediate<1>, setImmediate<2>, setImmediate<3>, setImmediate<4>, 
+    setImmediate<6>, setImmediate<7>, setImmediate<8> are added to the check phase, 
+  and since setTimeout<9> will be executed after 1 second, that is,setTimeout<9> 
+    will be increased in the timer phase with a delay of 1 second, 
+  therefore chack callbacks in phase and pending phase will be executed sooner.
+  During the sequential execution of setImmediates, upon reaching setImmediate<4>, 
+    the Promise.resolve<5> in it is transferred to the microtask queue and executed immediately, 
+    after which it returns to the check phase in the macrotask queue and continues the եxecuting setImmediates sequentially
+  and finally setTimeout<9> is just executed
 */
