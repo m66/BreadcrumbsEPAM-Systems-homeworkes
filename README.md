@@ -4,7 +4,7 @@ This repository contains the NodeJS course's homeworks
 
 ## Running the attached code
 
-Lesson 2
+From lesson 2 to lesson 4
 - `npm start` - run app.js
 - `npm run dev` - run app.js with nodemon
 
@@ -48,15 +48,28 @@ Lesson 1 - To avoid the `.git` file error, it has been converted to a `.gitx` fi
     - [Inside JavaScript Engines, Part 1: Parsing](https://medium.com/@yanguly/inside-javascript-engines-part-1-parsing-c519d75833d7)
     - [Inside JavaScript Engines, Part 2: code generation and basic optimizations](https://medium.com/@yanguly/inside-javascript-engines-part-2-code-generation-and-basic-optimizations-952bed02db62)
     - [Как работает JS: о внутреннем устройстве V8 и оптимизации](https://habr.com/ru/companies/ruvds/articles/337460/)
+    - [JavaScript Modules – How to Create, Import, and Export a Module in JS](https://www.freecodecamp.org/news/javascript-modules/)
 
 - Node JS
     - [Introduction](https://www.tutorialspoint.com/nodejs/nodejs_introduction.htm)
     - [Introduction](https://www.geeksforgeeks.org/introduction-to-node-js/)
-    - [JavaScript Modules – How to Create, Import, and Export a Module in JS](https://www.freecodecamp.org/news/javascript-modules/)
+
+    Modules
     - [Modules: CommonJS modules](https://nodejs.org/api/modules.html#modules-commonjs-modules)
     - [Modules: ECMAScript modules](https://nodejs.org/api/esm.html#modules-ecmascript-modules)
+
+    NPM
     - [NPM package manager](https://nodejs.dev/en/learn/an-introduction-to-the-npm-package-manager/)
     - [What Is NPM?](https://medium.com/swlh/what-is-npm-a-simple-english-guide-to-truly-understanding-the-node-package-manager-41e82f6c5515)
     - [package-lock.json: The Complete Guide](https://medium.com/helpshift-engineering/package-lock-json-the-complete-guide-2ae40175ebdd)
+
+    CPU Cores | Threads | Process
     - [CPU Cores vs Threads a Brief Explanation](https://www.serverbasket.com/help/cpu-cores-vs-threads/)
     - [FANG Interview Question | Process vs Thread](https://www.youtube.com/watch?v=4rLW7zg21gI)
+    
+    Event Loop
+    - [The Node.js Event Loop, Timers, and process.nextTick()](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick)
+    - [Don't Block the Event Loop (or the Worker Pool)](https://nodejs.org/en/docs/guides/dont-block-the-event-loop)
+    - [Timers in Node.js and beyond](https://nodejs.org/en/docs/guides/timers-in-node)
+    - [Node.js Event Loop and its Metrics](https://www.dynatrace.com/news/blog/all-you-need-to-know-to-really-understand-the-node-js-event-loop-and-its-metrics/)
+    - [Event Loop and the Big Picture — NodeJS Event Loop Part 1](https://blog.insiderattack.net/event-loop-and-the-big-picture-nodejs-event-loop-part-1-1cb67a182810)
