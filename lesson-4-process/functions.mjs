@@ -47,3 +47,15 @@ export function getPlatform() {
 export function getMemory() {
   return `Total memory: ${chalk.green(totalmem)} bytes`;
 }
+
+export function helpCommandes() {
+  return `
+    CPU info [${chalk.green('os --cpus')}] 
+    home directory [${chalk.green('os --homedir')}] 
+    username [${chalk.green('os --username')}] 
+    architecture [${chalk.green('os --architecture')}] 
+    hostname [${chalk.green('os --hostname')}] 
+    platform [${chalk.green('os --platform')}] 
+    memory [${chalk.green('os --memory')}]
+  `;
+}
