@@ -8,7 +8,13 @@ import {
   getHostname,
   getPlatform,
   getMemory,
-  helpCommandes
+  helpCommandes,
+  getDirectoryItems,
+  addNewFile,
+  renameFile,
+  copyFile,
+  moveFile,
+  removeFile
 } from "./functions.mjs";
 import chalk from "chalk";
 
@@ -24,18 +30,27 @@ const commands = {
   "os --platform": getPlatform,
   "os --memory": getMemory,
   "--help": helpCommandes,
+  "ls": getDirectoryItems,
+  "add": addNewFile,
+  "rn": renameFile,
+  "cp": copyFile,
+  "mv": moveFile,
+  "rm": removeFile
 };
 
 process.stdout.write(`Welcome ${username}!\n`);
-process.stdout.write(`${chalk.bold('--help')} to see the commands\n`);
+process.stdout.write(`${chalk.bold("--help")} to see the commands\n`);
 
 process.stdin.on("data", (data) => {
   const cmd = data.toString().trim();
+  const [command, ...files] = cmd.split(" ");
 
   if (cmd === ".exit") {
     exit();
   } else if (commands[cmd]) {
     process.stdout.write(commands[cmd]() + "\n");
+  } else if (command) {
+    process.stdout.write(commands[command](files) + "\n");
   } else {
     process.stdout.write(chalk.red("Invalid input\n"));
   }
