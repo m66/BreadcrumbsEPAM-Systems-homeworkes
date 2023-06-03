@@ -30,7 +30,7 @@ function getDirectoriesList(dirPaths) {
 
 function getDeepestDirectory(allDirsPath) {
   allDirsPath.forEach((dirPath) => {
-    const deepSize = dirPath.split("\\");
+    const deepSize = dirPath.split(path.sep);
     if (deepSize.length > deepestDirInfo.deepSize) {
       deepestDirInfo.path = dirPath;
       deepestDirInfo.deepSize = deepSize.length;
