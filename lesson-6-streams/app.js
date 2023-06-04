@@ -4,31 +4,23 @@ import chalk from "chalk";
 import {
   isExistFiles,
   isExistOperation,
-  transformToLowercase,
-  transformToReverse,
-  transformToUppercase,
+  transformByOperation,
 } from "./functions.mjs";
 
-const operations = {
-  uppercase: transformToUppercase,
-  lowercase: transformToLowercase,
-  reverse: transformToReverse,
-};
+const [inputFile, outputFile, operation] = process.argv.splice(2);
 
-process.stdin.on("data", (data) => {
-  const [inputFile, outputFile, operation] = data.toString().trim().split(" ");
+try {
+  if (isExistFiles(inputFile, outputFile) && isExistOperation(operation)) {
+    const readable = createReadStream(inputFile);
+    const writable = createWriteStream(outputFile);
 
-  try {
-    if (isExistFiles(inputFile, outputFile) && isExistOperation(operation)) {
-      const readable = createReadStream(inputFile);
-      const writable = createWriteStream(outputFile);
+    const transform = transformByOperation(operation);
+    readable.pipe(transform).pipe(writable);
 
-      const transform = operations[operation]();
-      readable.pipe(transform).pipe(writable);
-
-      process.stdout.write(chalk.magenta(`The <${operation}> transform was successful ;)\n`));
-    }
-  } catch (err) {
-    process.stdout.write(chalk.red(err) + '\n');
+    process.stdout.write(
+      chalk.magenta(`The <${operation}> transform was successful ;)\n`)
+    );
   }
-});
+} catch (err) {
+  process.stdout.write(chalk.red(err) + "\n");
+}

@@ -2,35 +2,27 @@ import fs from "fs";
 import path from "path";
 import { Transform } from "stream";
 
-export function transformToUppercase() {
+export function transformByOperation(operation) {
   return new Transform({
     transform(chunk, enc, callback) {
-      const uppercase = chunk.toString().toUpperCase();
-      callback(null, uppercase);
-    },
-  });
-}
+      let ts = chunk.toString();
 
-export function transformToLowercase() {
-  return new Transform({
-    transform(chunk, enc, callback) {
-      const uppercase = chunk.toString().toLowerCase();
-      callback(null, uppercase);
-    },
-  });
-}
-
-export function transformToReverse() {
-  return new Transform({
-    transform(chunk, enc, callback) {
-      const uppercase = chunk
-        .toString()
-        .split("\n")
-        .map((line) => {
-          return line.split("").reverse().join("");
-        })
-        .join("");
-      callback(null, uppercase);
+      switch (operation) {
+        case "uppercase":
+          ts = ts.toUpperCase();
+          break;
+        case "lowercase":
+          ts = ts.toLowerCase();
+          break;
+        case "reverse":
+          ts = ts
+            .split("\n")
+            .map((line) => {
+              return line.split("").reverse().join("");
+            })
+            .join("");
+      }
+      callback(null, ts);
     },
   });
 }

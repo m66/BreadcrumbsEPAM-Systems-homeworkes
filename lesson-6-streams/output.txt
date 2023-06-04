@@ -1,0 +1,4 @@
+<-- START
+SOME
+TEXT
+END -->
