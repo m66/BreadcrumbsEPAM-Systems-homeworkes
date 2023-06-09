@@ -1,0 +1,16 @@
+{
+  "name": "lesson-7-2-child-process",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "csv-parse": "^5.4.0"
+  }
+}

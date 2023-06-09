@@ -1,0 +1,29 @@
+Task 1:
+Create a function/class (be creative) that will get statistics about a process.
+
+Instructions:
+1. The function should accept: command as string, an optional command arguments as an array of strings and an optional timeout parameter (infinite if not specified)
+2. After testing the given command the function should save the process statistics as <timestamp><command>.json files in the 'logs' directory located relative to the project root.
+3. Each statistics should  contain the following fields:
+    start - the process start (timestamp string),
+    duration - the process duration (number in milliseconds),
+    success - boolean, indicating if the process run successfully
+    commandSuccess - boolean, indicating if the command itself run successfully (not the process internals). If success is true, the this field should not be included
+    error - string, the error message in case an error occurs.
+
+Task 2:
+Create a script that would read all the <file_name>.csv files located in the given directory and save the results as <file_name>.json files in an adjacent ./converted directory.
+
+Instructions:
+1. The script should accept directory path containing the .csv files from the command line. If not given the script should terminate with an error message.
+2. The script should create master and worker processes and distribute the .csv read/write task among the children evenly.
+3. Use 'csv-parser' npm package for csv-parsing.
+4. At the end the script should log the overall count and parsing duration (in milliseconds) of the records in the .csv files.
+5. Create mock .csv data (use https://www.mockaroo.com/ as an option), and test your script.
+6. Try additionally compare the duration it takes to parse all the files with and without using clustering.
+
+Important to note:
+    The script (the initializing function), function/method should be promise based.
+    Use modules, keep coding clean and modular,
+    The code should be in a fully working state.
+    Both the tasks are required to fulfill!!!

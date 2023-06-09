@@ -17,9 +17,7 @@ export function transformByOperation(operation) {
         case "reverse":
           ts = ts
             .split("\n")
-            .map((line) => {
-              return line.split("").reverse().join("");
-            })
+            .map((line) => line.split("").reverse().join(""))
             .join("");
       }
       callback(null, ts);
