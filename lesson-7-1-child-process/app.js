@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs, { createWriteStream } from "fs";
 import path from "path";
 import { spawn } from "child_process";
 
@@ -7,14 +7,14 @@ const dirPath = path.join(process.cwd(), dirName);
 let fileName = "";
 
 function getProcessStatistics(command, args = [], timeout = Infinity) {
-  const startDate = +new Date();
-  fileName = `${startDate}${command}.json`;
+  const startDate = new Date();
+  fileName = `${+startDate}${command}.json`;
 
   const statisticsData = {
-    start: "",
+    start: startDate.toISOString(),
     duration: null,
     success: false,
-    commandSuccess: false,
+    commandSuccess: true,
     error: "",
   };
 
@@ -23,18 +23,25 @@ function getProcessStatistics(command, args = [], timeout = Infinity) {
 
     childProcess.stdout.on("data", (data) => {});
 
-    childProcess.stderr.on("data", (data) => {
-      statisticsData.error = `Error from childe: ${data}`;
+    childProcess.stderr.on("data", (err) => {
+      statisticsData.error = err.message;
     });
 
     childProcess.on("error", (err) => {
-      statisticsData.error = `Error from parent: ${err}`;
+      statisticsData.error = `Child process error: ${err.message}`;
+      statisticsData.commandSuccess = false;
     });
 
-    childProcess.on("exit", () => {
+    // childProcess.on('exit', (code) => {
+    //   if (code === 0) {
+    //       statisticsData.commandSuccess = true;
+    //   }
+    // })
+
+    childProcess.on("close", () => {
       const endDate = +new Date();
+      statisticsData.duration = endDate - +startDate;
       statisticsData.success = true;
-      statisticsData.duration = endDate - startDate;
 
       if (fs.existsSync(dirPath)) {
         const filePath = path.join(dirPath, fileName);
@@ -42,11 +49,23 @@ function getProcessStatistics(command, args = [], timeout = Infinity) {
       } else {
         fs.mkdirSync(dirName);
         const filePath = path.join(dirPath, fileName);
-        fs.writeFileSync(filePath, JSON.stringify(statisticsData, null, 2));
+        const writeStream = createWriteStream(filePath);
+        writeStream.write(JSON.stringify(statisticsData, null, 2));
       }
       res(statisticsData);
     });
+
+    if (timeout !== Infinity) {
+      setTimeout(() => {
+        startDate.error = `The process was executeed after ${timeout}ms!`
+        childProcess.kill();
+      }, timeout);
+    }
   });
 }
 
-getProcessStatistics("ls", ["-lh", "/usr"])
+const statisticsInfo = getProcessStatistics("ls", ["-lh", "/usr"], 3000);
+
+statisticsInfo
+  .then((data) => console.log(data))
+  .catch((err) => console.log(err));

@@ -5,7 +5,24 @@ import { parse } from "csv-parse";
 const dirName = "converted";
 
 process.on("message", (msg) => {
-  const filePath = path.join(process.cwd(), msg);
+  const fullDirPath = path.join(process.cwd(), msg);
+
+  if (!fs.existsSync(fullDirPath)) {
+    console.log(`${msg} path is not exist`);
+  }
+
+  const filesList = fs.readdirSync(fullDirPath);
+
+  const csvFileArr = filesList.filter(
+    (file) => path.parse(path.join(fullDirPath, file)).ext === ".csv"
+  );
+
+  if (csvFileArr.length === 0) {
+    console.log(`There is no .csv file in ${msg} directory!`);
+  }
+  
+  const filePath = path.join(fullDirPath, csvFileArr[0]);
+
   const parser = parse({ delimiter: "," });
 
   if (fs.existsSync(filePath)) {
@@ -18,8 +35,6 @@ process.on("message", (msg) => {
 
     fs.mkdirSync("converted");
 
-    // const csvFileData = fs.readFileSync(filePath);
-
     const readStream = fs.createReadStream(filePath);
     const writeStream = fs.createWriteStream(convertedFilePath);
 
@@ -28,7 +43,6 @@ process.on("message", (msg) => {
     //   writeStream.write(JSON.stringify(data));
     // });
 
-    // fs.writeFileSync(convertedFilePath, csvFileData);
   } else {
     console.log(`${filePath} path is not exist`);
   }
