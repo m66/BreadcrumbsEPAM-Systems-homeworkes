@@ -1,3 +1,5 @@
+/* V2 - more compliant option - not finished yet */
+
 import path from "path";
 import fs from "fs";
 import os from "os";
@@ -11,7 +13,6 @@ function parseCsvToJson(dirPath) {
     const startDate = Date.now();
     const nCPUs = os.cpus().length;
 
-    console.log(fullDirPath);
     if (!fs.existsSync(fullDirPath)) {
       rej(new Error(`${dirPath} path is not exist`));
     }
