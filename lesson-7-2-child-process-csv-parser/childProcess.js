@@ -19,6 +19,7 @@ process.on("message", (msg) => {
 
   if (csvFileArr.length === 0) {
     console.log(`There is no .csv file in ${msg} directory!`);
+    return;
   }
   
   const filePath = path.join(fullDirPath, csvFileArr[0]);

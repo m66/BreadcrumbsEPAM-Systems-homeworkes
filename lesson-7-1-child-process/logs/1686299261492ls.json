@@ -1,7 +1,0 @@
-{
-  "start": "2023-06-09T08:27:41.492Z",
-  "duration": 14,
-  "success": false,
-  "commandSuccess": false,
-  "error": "Child process error: spawn ls ENOENT"
-}

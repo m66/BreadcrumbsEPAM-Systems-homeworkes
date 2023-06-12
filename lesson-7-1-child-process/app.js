@@ -8,7 +8,9 @@ let fileName = "";
 
 function getProcessStatistics(command, args = [], timeout = Infinity) {
   const startDate = new Date();
-  fileName = `${+startDate}${command}.json`;
+  fileName = `${startDate.toISOString().replaceAll(":", "-")}${command}.json`;
+
+  console.log(`${startDate.toISOString()}${command}.json`);
 
   const statisticsData = {
     start: startDate.toISOString(),
@@ -64,7 +66,7 @@ function getProcessStatistics(command, args = [], timeout = Infinity) {
   });
 }
 
-const statisticsInfo = getProcessStatistics("ls", ["-lh", "/usr"], 3000);
+const statisticsInfo = getProcessStatistics('arp', ["-a"], 3000);
 
 statisticsInfo
   .then((data) => console.log(data))
