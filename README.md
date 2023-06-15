@@ -85,3 +85,10 @@ Lesson 1 - To avoid the `.git` file error, it has been converted to a `.gitx` fi
     - [Scaling Node.js Applications With Multiprocessing](https://betterprogramming.pub/scaling-node-js-applications-with-multiprocessing-b0c25511832a)
     - [Node.js Child Processes and Cluster Module](https://voskan.host/2023/03/30/node-js-child-processes-and-cluster-module/)
     - [Understanding the NodeJS cluster module](https://leanpub.com/thenodejsclustermodule/read)
+
+- Networking
+    - [TCP IP Model](https://www.interviewbit.com/blog/tcp-ip-model/)
+    - [What is the OSI Model?](https://www.cloudflare.com/learning/ddos/glossary/open-systems-interconnection-model-osi/)
+    - [7 Layers Of The OSI Model (A Complete Guide)](https://www.softwaretestinghelp.com/osi-model-layers/)
+    - [GitHub | What happens when...(deep dive)](https://github.com/alex/what-happens-when )
+    - [What is DNS? | How DNS works](https://www.cloudflare.com/en-gb/learning/dns/what-is-dns/)

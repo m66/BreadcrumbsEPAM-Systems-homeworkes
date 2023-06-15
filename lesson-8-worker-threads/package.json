@@ -1,0 +1,19 @@
+{
+  "name": "lesson-8-worker-threads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  },
+  "type": "module"
+}
