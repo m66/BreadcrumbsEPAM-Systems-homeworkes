@@ -92,3 +92,20 @@ Lesson 1 - To avoid the `.git` file error, it has been converted to a `.gitx` fi
     - [7 Layers Of The OSI Model (A Complete Guide)](https://www.softwaretestinghelp.com/osi-model-layers/)
     - [GitHub | What happens when...(deep dive)](https://github.com/alex/what-happens-when )
     - [What is DNS? | How DNS works](https://www.cloudflare.com/en-gb/learning/dns/what-is-dns/)
+    - [Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml)
+
+- HTTP
+    - [What is HTTP?](https://www.cloudflare.com/en-gb/learning/ddos/glossary/hypertext-transfer-protocol-http/)
+    - [An overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
+    - [Node.js HTTP Module](https://www.w3schools.com/nodejs/nodejs_http.asp)
+    - [HTTP Status Codes](https://moz.com/learn/seo/http-status-codes)
+    - [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+    - [HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+    - [HTTP - Methods](https://www.tutorialspoint.com/http/http_methods.htm)
+    
+- TypeScript
+    - [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+    - [The Basics](https://www.typescriptlang.org/docs/handbook/2/basic-types.html)
+    - [TypeScript Duck-Typing](https://www.javatpoint.com/typescript-duck-typing)
+    - [Duck Typing in TypeScript](https://www.tutorialspoint.com/duck-typing-in-typescript)
+    - [Mid-week Scoop: Understanding Excess Property Checking in Typescript](https://www.allthingstypescript.dev/p/mid-week-scoop-understanding-excess/comments#:~:text=Excess%20property%20checking%20is%20when,type%20annotation%20for%20the%20object.)
