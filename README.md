@@ -102,6 +102,7 @@ Lesson 1 - To avoid the `.git` file error, it has been converted to a `.gitx` fi
     - [HTTP response status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
     - [HTTP request methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
     - [HTTP - Methods](https://www.tutorialspoint.com/http/http_methods.htm)
+    - [Common MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types)
     
 - TypeScript
     - [The TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)

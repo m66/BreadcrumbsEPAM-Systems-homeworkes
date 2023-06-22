@@ -1,9 +1,11 @@
+import fs from "fs";
 import url from "url";
-import fs, { createReadStream } from "fs";
 import path from "path";
 import { createServer } from "http";
 
 import { getJSONsList, initCsvParser } from "./helpers.js";
+
+const port = process.env.MY_PORT || 3001;
 
 const server = createServer((req, res) => {
   if (req.url === "/exports") {
@@ -67,6 +69,6 @@ const server = createServer((req, res) => {
   }
 });
 
-server.listen(process.env.MY_PORT, () => {
-  console.log(`Server running on port ${process.env.MY_PORT}`);
+server.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
