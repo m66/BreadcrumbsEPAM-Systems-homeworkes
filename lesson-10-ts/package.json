@@ -2,10 +2,11 @@
   "name": "lesson-10-ts",
   "version": "1.0.0",
   "description": "",
-  "main": "main.ts",
+  "main": "dist/main.js",
   "scripts": {
-    "start": "node --require dotenv/config main.js",
-    "dev": "nodemon --require dotenv/config main.js"
+    "start": "node dist/main.js",
+    "dev": "nodemon --require dotenv/config src/main.ts",
+    "build": "rimraf dist && copyfiles -u 1 src/csvDir/*.* dist & tsc"
   },
   "keywords": [],
   "author": "",
@@ -15,9 +16,11 @@
   },
   "devDependencies": {
     "@types/node": "^20.3.1",
+    "copyfiles": "^2.4.1",
     "dotenv": "^16.3.1",
     "nodemon": "^2.0.22",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
     "typescript": "^5.1.3"
-  },
-  "type": "module"
+  }
 }

@@ -110,3 +110,7 @@ Lesson 1 - To avoid the `.git` file error, it has been converted to a `.gitx` fi
     - [TypeScript Duck-Typing](https://www.javatpoint.com/typescript-duck-typing)
     - [Duck Typing in TypeScript](https://www.tutorialspoint.com/duck-typing-in-typescript)
     - [Mid-week Scoop: Understanding Excess Property Checking in Typescript](https://www.allthingstypescript.dev/p/mid-week-scoop-understanding-excess/comments#:~:text=Excess%20property%20checking%20is%20when,type%20annotation%20for%20the%20object.)
+    - [Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+    - [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html)
+    - [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+    - [Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)

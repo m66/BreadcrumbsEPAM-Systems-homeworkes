@@ -5,6 +5,8 @@ import fs from "fs";
 
 const { csvFileArr, csvDir } = workerData;
 
+console.log('---->> ', csvFileArr);
+
 csvFileArr.forEach((csvFileName) => {
   const csvFilePath = path.join(process.cwd(), csvDir, csvFileName);
   const jsonFilePath = path.join(

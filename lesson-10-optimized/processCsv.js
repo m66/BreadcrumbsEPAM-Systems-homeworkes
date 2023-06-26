@@ -1,12 +1,12 @@
-import { workerData, parentPort } from "worker_threads";
+import { parentPort } from "worker_threads";
 import csv from "csv-parser";
 import path from "path";
 import fs from "fs";
 
-const { csvFileArr, csvDir } = workerData;
+parentPort.on("message", (message) => {
+  const { csvFileName, dirName } = message;
 
-csvFileArr.forEach((csvFileName) => {
-  const csvFilePath = path.join(process.cwd(), csvDir, csvFileName);
+  const csvFilePath = path.join(process.cwd(), dirName, csvFileName);
   const jsonFilePath = path.join(
     process.cwd(),
     "converted",
@@ -33,7 +33,9 @@ csvFileArr.forEach((csvFileName) => {
         JSON.stringify(results, null, 2)
       );
       parentPort.postMessage({
-        message: `${csvFileName} file converted ${results.length} rows. Duration: ${new Date() - startDate} ms`,
+        message: `${csvFileName} file converted ${
+          results.length
+        } rows. Duration: ${new Date() - startDate} ms`,
       });
     });
 });
