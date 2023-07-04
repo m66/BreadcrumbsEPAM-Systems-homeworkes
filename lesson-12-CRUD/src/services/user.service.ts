@@ -6,7 +6,6 @@ import {
   IUser,
   IUserService,
 } from '../interfaces/user.interface'
-import { generateApiKey } from '../helpers/functions'
 
 export default class UserService implements IUserService {
   getAllUsers() {
@@ -20,6 +19,7 @@ export default class UserService implements IUserService {
       })
 
       readStream.on('close', () => {
+        if(data.length === 0) resolve('There are no any user!')
         resolve(data)
       })
 
@@ -42,7 +42,7 @@ export default class UserService implements IUserService {
       readStream.on('close', () => {
         const dataArr: IUser[] = JSON.parse(data)
         const user = dataArr.find((user) => user.id === id)
-        // if(!user) reject(JSON.stringify({message: `No user found with id ${id}`}));
+        if(!user) reject(JSON.stringify({message: `No user found with id ${id}`}));
         resolve(user)
       })
 

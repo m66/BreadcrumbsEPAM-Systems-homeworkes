@@ -59,8 +59,6 @@ function createValidation(validations: any[]) {
   }
 }
 
-
-
 export const validations: { [key: string]: (val: string | number) => any } = {
   name: createValidation([required, minLength(4), maxLength(36), nameValidation]),
   age: createValidation([required, numberValidation, minNum(4), maxNum(80)]),
