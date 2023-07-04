@@ -43,7 +43,7 @@ function csvParser(dirName: string) {
           worker = workers.get(workerNum);
         } else {
           const processPath = path.join(__dirname, "processCsv.js");
-          
+
           worker = new Worker(processPath);
           workers.set(workerNum, worker);
         }
@@ -89,7 +89,6 @@ export function sendResponse(res: ServerResponse, code: number, data: any) {
 }
 
 export function parseCsv(req: IncomingMessage, res: ServerResponse) {
-  
   let dirName = "";
 
   req.on("data", (data) => {

@@ -2,9 +2,9 @@ import * as url from 'url'
 import { createServer } from 'http'
 
 import { routes } from './routes'
-import { sendResponse } from "./functions";
+import { sendResponse } from './functions'
 
-const port = process.env.MY_PORT || 3001
+const port = process.env.MY_PORT || 3002
 
 const server = createServer((req, res) => {
   const { pathname } = url.parse(req.url!, true)
@@ -15,11 +15,11 @@ const server = createServer((req, res) => {
     : routes[pathname!]
   const controller = route && route[method!]
 
-    if(controller) {
-      controller(req, res)
-    } else {
-      sendResponse(res, 404, { message: "Page not found!" });
-    }
+  if (controller) {
+    controller(req, res)
+  } else {
+    sendResponse(res, 404, { message: 'Page not found!' })
+  }
 })
 
 server.listen(port, () => {

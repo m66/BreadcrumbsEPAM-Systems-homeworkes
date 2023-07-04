@@ -4,7 +4,7 @@ import { createServer } from "http";
 import {routes} from "./routes.js"
 import { sendResponse } from "./functions.js";
 
-const port = process.env.MY_PORT || 3001;
+const port = process.env.MY_PORT || 3002;
 
 const server = createServer((req, res) => {
 
