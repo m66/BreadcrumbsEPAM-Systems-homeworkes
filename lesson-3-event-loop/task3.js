@@ -11,6 +11,9 @@ fs.readFile(__filename, () => {
   process.nextTick(() => console.log("7"));
 });
 
+Promise.resolve().then(() => console.log("16"));
+
+
 setTimeout(() => console.log("8"));
 setImmediate(() => {
   console.log("9");

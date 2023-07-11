@@ -6,21 +6,27 @@ import {
   IUser,
   IUserService,
 } from '../interfaces/user.interface'
+import { AppError } from '../helpers/AppError'
 
 export default class UserService implements IUserService {
-  getAllUsers() {
+  private jsonFilePath: string
+
+  constructor() {
+    this.jsonFilePath = path.join(__dirname, '../db/users.json')
+  }
+
+  private readUsers(): Promise<IUser[]> {
     return new Promise((resolve, reject) => {
       let data = ''
-      const jsonFilePath = path.join(__dirname, '../db/users.json')
-      const readStream = fs.createReadStream(jsonFilePath)
+      const readStream = fs.createReadStream(this.jsonFilePath)
 
       readStream.on('data', (chank) => {
         data += chank.toString()
       })
 
       readStream.on('close', () => {
-        if(data.length === 0) resolve('There are no any user!')
-        resolve(data)
+        const users: IUser[] = JSON.parse(data)
+        resolve(users)
       })
 
       readStream.on('error', (err) => {
@@ -29,167 +35,107 @@ export default class UserService implements IUserService {
     })
   }
 
-  getUserById(id: string) {
+  private writeUsers(usersData: IUser[]): Promise<void> {
     return new Promise((resolve, reject) => {
-      let data = ''
-      const jsonFilePath = path.join(__dirname, '../db/users.json')
-      const readStream = fs.createReadStream(jsonFilePath)
-
-      readStream.on('data', (chank) => {
-        data += chank.toString()
-      })
-
-      readStream.on('close', () => {
-        const dataArr: IUser[] = JSON.parse(data)
-        const user = dataArr.find((user) => user.id === id)
-        if(!user) reject(JSON.stringify({message: `No user found with id ${id}`}));
-        resolve(user)
-      })
-
-      readStream.on('error', (err) => {
-        reject(err)
-      })
+      const writeStream = fs
+        .createWriteStream(this.jsonFilePath)
+        .write(JSON.stringify(usersData, null, 2))
+      resolve()
     })
   }
 
-  createUser(newUserData: ICreatedNewUser) {
-    return new Promise((resolve, reject) => {
-      let data = ''
-      const jsonFilePath = path.join(__dirname, '../db/users.json')
-      const readStream = fs.createReadStream(jsonFilePath)
-
-      readStream.on('data', (chank) => {
-        data += chank.toString()
-      })
-
-      readStream.on('close', () => {
-        const dataArr: IUser[] = JSON.parse(data)
-
-        const userData: IUser = {
-          ...newUserData,
-          id: `${Math.floor(Math.random() * 10000)}_${Date.now()}`,
-          status: false,
-          creationTimestamp: new Date().toISOString(),
-          modificationTimestamp: null,
-        }
-
-        dataArr.push(userData)
-
-        fs.createWriteStream(jsonFilePath).write(
-          JSON.stringify(dataArr, null, 2),
-        )
-        resolve(userData)
-      })
-
-      readStream.on('error', (err) => {
-        reject(err)
-      })
-    })
+  async getAllUsers(): Promise<IUser[]> {
+    const users = await this.readUsers()
+    return users
   }
 
-  updateUser(id: string, newUserData: Partial<ICreatedNewUser>) {
-    return new Promise((resolve, reject) => {
-      let data = ''
-      const jsonFilePath = path.join(__dirname, '../db/users.json')
-      const readStream = fs.createReadStream(jsonFilePath)
+  async getUserById(id: string): Promise<IUser> {
+    const users = await this.readUsers()
+    const user = users.find((user) => user.id === id)
 
-      readStream.on('data', (chank) => {
-        data += chank.toString()
-      })
+    if (!user) {
+      throw new AppError(`No user found with id ${id}`, 404)
+    }
 
-      readStream.on('close', () => {
-        const dataArr: IUser[] = JSON.parse(data)
-        const user: IUser | undefined = dataArr.find((user) => user.id === id)
-
-        if (user) {
-          const updatedUser: IUser = {
-            ...user,
-            ...newUserData,
-            modificationTimestamp: new Date().toISOString()
-          }
-          const newArr: IUser[] = dataArr.filter((user) => user.id !== id)
-
-          newArr.push(updatedUser)
-
-          fs.createWriteStream(jsonFilePath).write(
-            JSON.stringify(newArr, null, 2),
-          )
-
-          resolve(updatedUser)
-        } else {
-          reject({ message: `User with id ${id} not found!` })
-        }
-      })
-
-      readStream.on('error', (err) => {
-        reject({ messgae: err.message })
-      })
-    })
+    return user
   }
 
-  deleteUser(id: string) {
-    return new Promise((resolve, reject) => {
-      let data = ''
-      const jsonFilePath = path.join(__dirname, '../db/users.json')
-      const readStream = fs.createReadStream(jsonFilePath)
+  async createUser(newUserData: ICreatedNewUser): Promise<IUser> {
+    const users = await this.readUsers()
 
-      readStream.on('data', (chank) => {
-        data += chank.toString()
-      })
+    const userData: IUser = {
+      id: `${Math.floor(Math.random() * 10000)}_${Date.now()}`,
+      ...newUserData,
+      status: false,
+      creationTimestamp: new Date().toISOString(),
+      modificationTimestamp: null,
+    }
 
-      readStream.on('close', () => {
-        const dataArr: IUser[] = JSON.parse(data)
-        const user = dataArr.find((user) => user.id === id)
-        const newArr: IUser[] = dataArr.filter((user) => user.id !== id)
+    users.push(userData)
 
-        fs.createWriteStream(jsonFilePath).write(
-          JSON.stringify(newArr, null, 2),
-        )
+    this.writeUsers(users)
 
-        resolve(user)
-      })
-
-      readStream.on('error', (err) => {
-        reject(err)
-      })
-    })
+    return userData
   }
 
-  activateUser(id: string) {
-    return new Promise((resolve, reject) => {
-      let data = ''
-      const jsonFilePath = path.join(__dirname, '../db/users.json')
-      const readStream = fs.createReadStream(jsonFilePath)
+  async updateUser(
+    id: string,
+    newUserData: Partial<ICreatedNewUser>,
+  ): Promise<IUser> {
+    const users = await this.readUsers()
+    const userIndex = users.findIndex((user) => user.id === id)
 
-      readStream.on('data', (chank) => {
-        data += chank.toString()
-      })
+    if (userIndex === -1) {
+      throw new AppError(`User with id ${id} not found!`, 404)
+    }
 
-      readStream.on('close', () => {
-        const dataArr: IUser[] = JSON.parse(data)
-        let user: IUser | undefined = dataArr.find((user) => user.id === id)
-        const newArr: IUser[] = dataArr.filter((user) => user.id !== id)
+    const updatedUser: IUser = {
+      ...users[userIndex],
+      ...newUserData,
+      modificationTimestamp: new Date().toISOString(),
+    }
 
-        if (user) {
-          user = {
-            ...user,
-            status: true,
-          }
+    users[userIndex] = updatedUser
 
-          newArr.push(user)
-          fs.createWriteStream(jsonFilePath).write(
-            JSON.stringify(newArr, null, 2),
-          )
+    await this.writeUsers(users)
 
-          resolve(user)
-        } else {
-          reject({ message: `No user found with id ${id}` })
-        }
-      })
+    return updatedUser
+  }
 
-      readStream.on('error', (err) => {
-        reject(err)
-      })
-    })
+  async deleteUser(id: string): Promise<IUser> {
+    const users = await this.readUsers()
+
+    const userIndex = users.findIndex((user) => user.id === id)
+
+    if (userIndex === -1) {
+      throw new AppError(`User with id ${id} not found!`, 404)
+    }
+
+    const deletedUser = users.splice(userIndex, 1)[0]
+
+    await this.writeUsers(users)
+
+    return deletedUser
+  }
+
+  async activateUser(id: string): Promise<IUser> {
+    const users = await this.readUsers()
+
+    const userIndex = users.findIndex((user) => user.id === id)
+
+    if (!userIndex) {
+      throw new AppError(`User with id ${id} not found!`, 404)
+    }
+
+    const activatedUser = {
+      ...users[userIndex],
+      status: true,
+    }
+
+    users[userIndex] = activatedUser
+
+    await this.writeUsers(users)
+
+    return activatedUser
   }
 }

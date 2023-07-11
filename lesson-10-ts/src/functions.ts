@@ -93,7 +93,7 @@ export function parseCsv(req: IncomingMessage, res: ServerResponse) {
 
   req.on("data", (data) => {
     dirName += data.toString();
-  });  
+  });
 
   req.on("end", () => {
     const { dirPath } = JSON.parse(dirName);

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { validations } from "./validations";
 
-/* FOR CHACKING API-KEY */
+/* For checking API-KEY */
 export function checkApiKeyMiddlewere(req: Request, res: Response, next: NextFunction) {
     const apiKey: string = req.headers['api-key'] as string;
 
@@ -16,7 +16,7 @@ export function checkApiKeyMiddlewere(req: Request, res: Response, next: NextFun
     next();
 }
 
-/* VALIDATION */
+/* Validation */
 export function validationData(req: Request, res: Response, next: NextFunction) {
   const userData = req.body;
   const errors: { [key: string]: string } = {};
@@ -27,7 +27,17 @@ export function validationData(req: Request, res: Response, next: NextFunction) 
       errors[key] = error;
     }
   }
-  
-  next(Object.keys(errors).length === 0 ? null : JSON.stringify(errors));
-}
 
+  // next(Object.keys(errors).length === 0 ? null : JSON.stringify(errors));
+  let errResult = undefined;
+
+  if(Object.keys(errors).length !== 0) {
+    errResult = {
+      message: "ValidationError",
+      statusCode: 400,
+      data: errors
+    }
+  }
+
+  next(errResult);
+}
