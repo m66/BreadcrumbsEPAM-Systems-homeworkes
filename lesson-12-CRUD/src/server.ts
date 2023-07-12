@@ -9,7 +9,7 @@ const port = process.env.MY_PORT || 3002
 app.use(express.json())
 app.use('/users', checkApiKeyMiddlewere)
 app.use(routes)
-app.use(errorHandlerMiddlewere)
+// app.use(errorHandlerMiddlewere)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)

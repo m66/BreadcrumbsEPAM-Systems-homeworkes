@@ -6,43 +6,44 @@ import {
   IUserService,
 } from '../interfaces/user.interface'
 import { errorHandler } from '../helpers/errorHandler'
+import { sendResponse } from '../helpers/functions'
 
 export class UserController implements IUserContoller {
   constructor(private userService: IUserService) {}
 
   getAllUsers = errorHandler(async (req: Request, res: Response) => {
     const users = await this.userService.getAllUsers()
-    res.status(200).send(users)
+    sendResponse(null, res, 200, users)
   })
 
   getUserById = errorHandler(async (req: Request, res: Response) => {
     const userId = req.params.id
     const user = await this.userService.getUserById(userId)
-    res.status(200).send(user)
+    sendResponse(null, res, 200, user)
   })
 
   createUser = errorHandler(async (req: Request, res: Response) => {
     const userData: IUser = req.body
     await this.userService.createUser(userData)
-    res.status(201).send(`User added successfully!`)
+    sendResponse(null, res, 201, 'User added successfully!')
   })
 
   updateUser = errorHandler(async (req: Request, res: Response) => {
     const userId = req.params.id
     const userData = req.body
     const updatedUser = await this.userService.updateUser(userId, userData)
-    res.status(200).send(`User <id: ${userId}> updated successfully!`)
+    sendResponse(null, res, 200, `User <id: ${userId}> updated successfully!`)
   })
 
   deleteUser = errorHandler(async (req: Request, res: Response) => {
     const userId = req.params.id
     const deletedUser = await this.userService.deleteUser(userId)
-    res.status(204).send(`User <id: ${userId}> deleted successfully!`)
+    sendResponse(null, res, 204, `User <id: ${userId}> deleted successfully!`)
   })
 
   activateUser = errorHandler(async (req: Request, res: Response) => {
     const userId = req.params.id
     const activatedUser = await this.userService.activateUser(userId)
-    res.status(200).send(`User <id: ${userId}> activated successfully!`)
+    sendResponse(null, res, 200, `User <id: ${userId}> activated successfully!`)
   })
 }

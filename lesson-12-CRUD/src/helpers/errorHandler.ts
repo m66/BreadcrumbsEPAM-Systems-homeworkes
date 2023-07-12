@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express"
+import { sendResponse } from "./functions";
 
 type controller = (req: Request, res: Response) => Promise<void>
 
@@ -6,6 +7,6 @@ export const errorHandler = (controller: controller) => async(req: Request, res:
     try {
         await controller(req, res);
     } catch (error: any) {
-        res.status(error.statusCode).send(error.message)
+        sendResponse(error, res)
     }
 }
