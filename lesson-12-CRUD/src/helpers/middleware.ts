@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { validations } from "./validations";
+import { AppError } from "./AppError";
 
 /* For checking API-KEY */
 export function checkApiKeyMiddlewere(req: Request, res: Response, next: NextFunction) {
@@ -28,16 +29,25 @@ export function validationData(req: Request, res: Response, next: NextFunction) 
     }
   }
 
-  // next(Object.keys(errors).length === 0 ? null : JSON.stringify(errors));
-  let errResult = undefined;
-
   if(Object.keys(errors).length !== 0) {
-    errResult = {
-      message: "ValidationError",
-      statusCode: 400,
-      data: errors
+    let errorMessage = ''
+
+    for(let err in errors) {
+        errorMessage += `${err.toUpperCase()}: ${errors[err]} `
     }
+    const validationError = new AppError(errorMessage, 422)
+    
+    // throw new AppError(`ValidationError: ${errorMessage:}`, 422)
+    next(validationError);
+  }
+  next();
+}
+
+export function errorHandlerMiddlewere(err: AppError, req: Request, res: Response, next: NextFunction) {
+
+  if (err.statusCode === 422) {
+    return res.status(err.statusCode).json({ error: 'Validation Error', message: err.message });
   }
 
-  next(errResult);
+  res.status(500).json({ error: 'Internal Server Error' });
 }
