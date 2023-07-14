@@ -78,10 +78,7 @@ export default class UserService implements IUserService {
     return userData
   }
 
-  async updateUser(
-    id: string,
-    newUserData: Partial<ICreatedNewUser>,
-  ): Promise<IUser> {
+  async updateUser(id: string, newUserData: Partial<ICreatedNewUser>): Promise<IUser> {
     const users = await this.readUsers()
     const userIndex = users.findIndex((user) => user.id === id)
 
@@ -123,7 +120,7 @@ export default class UserService implements IUserService {
 
     const userIndex = users.findIndex((user) => user.id === id)
 
-    if (!userIndex) {
+    if (userIndex === -1) {
       throw new AppError(`User with id ${id} not found!`, 404)
     }
 

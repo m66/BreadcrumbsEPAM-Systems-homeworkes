@@ -32,18 +32,18 @@ export class UserController implements IUserContoller {
     const userId = req.params.id
     const userData = req.body
     const updatedUser = await this.userService.updateUser(userId, userData)
-    sendResponse(null, res, 200, `User <id: ${userId}> updated successfully!`)
+    sendResponse(null, res, 200, `User with <id: ${userId}> updated successfully!`)
   })
 
   deleteUser = errorHandler(async (req: Request, res: Response) => {
     const userId = req.params.id
     const deletedUser = await this.userService.deleteUser(userId)
-    sendResponse(null, res, 204, `User <id: ${userId}> deleted successfully!`)
+    sendResponse(null, res, 204, `User with <id: ${userId}> deleted successfully!`)
   })
 
   activateUser = errorHandler(async (req: Request, res: Response) => {
     const userId = req.params.id
     const activatedUser = await this.userService.activateUser(userId)
-    sendResponse(null, res, 200, `User <id: ${userId}> activated successfully!`)
+    sendResponse(null, res, 200, `User with <id: ${userId}> activated successfully!`)
   })
 }
