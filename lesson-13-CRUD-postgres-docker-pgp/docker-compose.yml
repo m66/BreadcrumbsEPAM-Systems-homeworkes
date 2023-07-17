@@ -1,0 +1,26 @@
+services:
+  app:
+    image: node
+    ports:
+      - 3001:3001
+    depends_on:
+      - db
+    environment:
+      - MY_PORT=3001
+      - ADMIN_API_KEY=QxjBFsOZuKxP3y6xBFKDXj8wODp4mdsm
+    command: ["bash", "-c", "npm install && npx nodemon src/server.ts"]
+    working_dir: /app
+    volumes:
+      - ./:/app
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

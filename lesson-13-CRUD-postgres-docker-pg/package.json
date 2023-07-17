@@ -1,0 +1,29 @@
+{
+  "name": "lesson-12-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/server.ts",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon --require dotenv/config src/server.ts",
+    "build": "rimraf dist && copyfiles -u 1 src/csvDir/*.* dist & tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.11.1",
+    "pg-promise": "^11.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^20.4.2",
+    "@types/pg": "^8.10.2",
+    "dotenv": "^16.3.1",
+    "nodemon": "^2.0.22",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
