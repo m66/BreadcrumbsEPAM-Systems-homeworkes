@@ -114,3 +114,13 @@ Lesson 1 - To avoid the `.git` file error, it has been converted to a `.gitx` fi
     - [Object Types](https://www.typescriptlang.org/docs/handbook/2/objects.html)
     - [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
     - [Utility Types](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+
+- Docker
+    - [Docker tutorial](https://docs.docker.com/get-started/)
+    - [Docker Commands Cheat Sheet](https://phoenixnap.com/kb/docker-commands-cheat-sheet)
+
+- PostgreSQL
+    - [PostgreSQL 15.3 Documentation](https://www.postgresql.org/docs/current/)
+
+- TypeORM
+    - [TypeORM](https://typeorm.io/)

@@ -1,0 +1,399 @@
+CREATE TABLE person(
+	id SERIAL NOT NULL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50),
+	email VARCHAR(100),
+	gender VARCHAR(15),
+	date_of_birth DATE,
+	salary INT,
+	country VARCHAR(50)
+)
+
+
+
+insert into public.users values (11, 'artur', 22)
+
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country) values ('Sheila-kathryn', 'Jacobson', 'sjacobson1@disqus.com', 'Female', '1981-08-18', 89, 'Indonesia');
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country) values ('Anestassia', 'Thewlis', 'athewlis2@trellian.com', 'Female', '2007-07-27', 70, 'Philippines');
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country) values ('Arluene', 'Rubinovitch', 'arubinovitch3@addthis.com', 'Female', '1950-09-12', 83, 'Canada');
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country) values ('Devon', 'Rooney', 'drooney4@discuz.net', 'Female', '1952-09-06', 56, 'Poland');
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country) values ('Dewey', 'Convery', 'dconvery6@home.pl', 'Male', '2008-12-06', 20, 'Spain');
+
+
+
+
+select id, name from users
+
+select * from users
+
+select * from users
+where age > 20 and age < 50
+
+SELECT * FROM person
+WHERE car_id IS NULL
+
+
+
+
+
+
+
+
+UPDATE person 
+set age = 26
+where age = 19
+
+
+--DELETE all records
+DELETE FROM person 
+DELETE FROM person WHERE id = 55
+DROP TABLE person 
+
+
+
+
+--OPERATORS
+-- = <> > < <= >=
+
+
+
+SELECT * FROM person LIMIT 4
+SELECT * FROM person OFFSET 4 LIMIT 2
+SELECT * FROM person OFFSET 4 FETCH FIRST 2 ROW ONLY 
+
+
+
+SELECT * FROM person
+WHERE user_age = 43
+OR user_age = 53
+OR user_age = 55
+----- or
+SELECT * FROM person
+WHERE user_age IN (43, 53, 55)
+
+
+
+
+SELECT * FROM person
+WHERE  date_of_birth 
+BETWEEN DATE '2000-01-01' AND '2015-01-01'
+
+
+
+
+-- % sign means any
+SELECT * FROM person
+WHERE email LIKE '%.com'
+
+SELECT * FROM person
+WHERE email LIKE '%@home.%'
+
+
+
+
+-- _ sign means count of charakters
+SELECT * FROM person
+WHERE email LIKE '__________@%'
+
+SELECT * FROM person
+WHERE email LIKE '__a_______@%'
+
+
+
+
+-- ILIKE ignore upper/lower cases
+SELECT * FROM person
+WHERE country ILIKE 'c%'
+
+
+
+
+
+-- skips conflict of changing uniq items
+INSERT INTO test (id, name) 
+VALUES (4, 'dddd')
+ON CONFLICT (id) DO NOTHING 
+
+
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country) 
+values ('Dewey', 'Convery', 'dconvery6@home.pl', 'Male', '2008-12-06', 20, 'Spain')
+ON CONFLICT (id) DO UPDATE 
+SET email = EXCLUDE.email
+
+
+
+
+
+
+
+-- GROUP BY GIVEN FIELD AND GET COUNT EVERY FIELD
+SELECT country, COUNT(*)  
+FROM person
+GROUP BY country 
+ORDER BY country
+
+-- GET THAT COUNTRY WHERE HAVE MORE THAN 2 PEOPLE
+SELECT country, COUNT(*)  
+FROM person
+GROUP BY country
+HAVING COUNT(*) > 2 
+ORDER BY country
+
+
+
+
+
+-- count age
+SELECT first_name, AGE(now(), date_of_birth) FROM person
+
+
+
+
+-- delete primary key
+ALTER TABLE person DROP CONSTRAINT test_pkey
+
+-- add primary key
+ALTER TABLE test ADD PRIMARY KEY(id)
+
+
+ALTER TABLE person ADD UNIQUE(email)
+
+
+
+-- uniq value for a given column
+ALTER TABLE person ADD UNIQUE(email)
+
+
+
+
+
+
+
+SELECT DISTINCT gender FROM person
+
+
+
+
+
+-- add like validation, that check before insert
+ALTER TABLE person ADD CONSTRAINT gender_constraint CHECK (gender = 'Female' OR gender = 'Male')
+
+
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+-----------------------------------------------------------------------------
+
+CREATE TABLE car (
+	id BIGSERIAL NOT NULL PRIMARY KEY,
+	make VARCHAR(50) NOT NULL,
+	model VARCHAR(50) NOT NULL,
+	price NUMERIC(19, 2) NOT NULL
+)
+
+
+
+insert into car (make, model, price) values ('GMC', 'Vandura G3500', '5.99'),
+											('Chevrolet', 'Express 2500', '0.52'),
+											('Ford', 'Econoline E250', '4.89'),
+											('Mazda', 'Mazda6', '3.31'),
+											('Chrysler', '300M', '8.46'),
+											('Honda', 'del Sol', '6.74'),
+											('Mercedes-Benz', 'R-Class', '5.32'),
+											('Saturn', 'Ion', '6.43'),
+											('Buick', 'LeSabre', '0.51'),
+											('Chevrolet', 'G-Series G10', '6.13'),
+											('Chevrolet', 'Camaro', '4.33'),
+											('Dodge', 'D150', '2.26'),
+											('Ford', 'Aerostar', '4.26'),
+											('Chrysler', 'PT Cruiser', '9.21'),
+											('Porsche', '944', '7.08'),
+											('Ferrari', 'F430', '8.74')
+
+
+
+											
+											
+SELECT max(price) FROM car
+
+SELECT AVG(price) FROM car
+
+SELECT ROUND(AVG(price)) FROM car
+
+-- gtnum e make-i amenaejan tarberakner@
+SELECT make, MIN(price) FROM car GROUP BY make
+
+-- hashvum e yuraqanchyur make-i bolor meqenaneri price-neri gumar@
+SELECT make, SUM(price) FROM car GROUP BY make
+
+
+
+
+
+-- arithmetic operations
+-- +   -   *   /   ^(power)   !(factorial)   %
+
+
+SELECT make, model, price, price * 0.1 FROM car
+
+SELECT make, model, price, ROUND(price * 0.1, 2) FROM car
+
+
+
+-- ALIAS
+SELECT make, model, price, ROUND(price * 0.1, 2) AS percent FROM car
+
+
+
+
+-- COALESCE  - get the first truly value
+SELECT COALESCE(NULL, 1) AS number
+
+SELECT COALESCE(email, 'Email not provided') FROM person
+
+
+
+
+-- NULLIF() - եթե միջի արժեքները իրար հավասար են ոչինչ չի վերադարձնում, հակառակ դեպքում՝ առաջին արժեքը
+-- error չստանալու համար
+
+
+
+
+-- time
+
+SELECT now()
+SELECT NOW()::DATE
+SELECT NOW()::TIME
+SELECT NOW()::timestamp
+
+SELECT NOW() - INTERVAL '1 YEAR'
+
+SELECT EXTRACT(YEAR FROM NOW())
+SELECT EXTRACT(MONTH FROM NOW())
+SELECT EXTRACT(DAY FROM NOW())
+SELECT EXTRACT(DOW FROM NOW())
+SELECT EXTRACT(CENTURY FROM NOW())
+
+
+
+
+
+
+
+---------------------------------------------------------------------------
+
+CREATE TABLE person(
+	id SERIAL NOT NULL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50),
+	email VARCHAR(100),
+	gender VARCHAR(15),
+	date_of_birth DATE,
+	salary INT,
+	country VARCHAR(50),
+	car_id BIGINT REFERENCES car (id), UNIQUE(car_id)
+)
+
+
+
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country, car_id) values ('Sheila-kathryn', 'Jacobson', 'sjacobson1@disqus.com', 'Female', '1981-08-18', 89, 'Indonesia', 4);
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country) values ('Anestassia', 'Thewlis', 'athewlis2@trellian.com', 'Female', '2007-07-27', 70, 'Philippines');
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country, car_id) values ('Arluene', 'Rubinovitch', 'arubinovitch3@addthis.com', 'Female', '1950-09-12', 83, 'Canada', 7);
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country, car_id) values ('Devon', 'Rooney', 'drooney4@discuz.net', 'Female', '1952-09-06', 56, 'Poland', 15);
+insert into person (first_name, last_name, email, gender, date_of_birth, salary, country) values ('Dewey', 'Convery', 'dconvery6@home.pl', 'Male', '2008-12-06', 20, 'Spain');
+
+
+
+
+
+-- INNER JOIN
+SELECT * FROM person
+JOIN car
+ON person.car_id = car.id
+
+--LEFT JOIN
+SELECT * FROM person
+LEFT JOIN car
+ON person.car_id = car.id
+
+
+
+SELECT * FROM person
+LEFT JOIN car
+ON person.car_id = car.id
+WHERE car.* IS NULL
+
+
+
+
+
+
+
+-------------------------------------------
+SELECT * FROM pg_available_extensions 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
+
+-- everytime generate new id
+SELECT uuid_generate_v4()
+
+
+CREATE TABLE test_uuid (
+person_uid UUID NOT NULL PRIMARY KEY,
+name varchar(50)
+)
+
+INSERT INTO test_uuid (person_uid, name) VALUES (uuid_generate_v4(), 'John')
+
+
+SELECT * FROM person
+JOIN car
+ON person.car_uid = car.car_uid
+--or
+SELECT * FROM person
+JOIN car
+USING(car_uid)
+
+
+
+
+
+
+
+
+--------------------------------------
+
+--CREATE TABLE users(
+--	user_id UUID NOT NULL PRIMARY KEY,
+--	name VARCHAR(50) NOT NULL,
+--	age INTEGER NOT NULL,
+--	gender VARCHAR(50) NOT NULL,
+--	status BOOLEAN NOT NULL,
+--	creationTimestamp VARCHAR(50) NOT NULL,
+--	modificationTimestamp VARCHAR(50)
+--)
+
+--INSERT INTO users(user_id, name, age, gender, status, creationTimestamp) 
+--VALUES (uuid_generate_v4(), 'aaaa', 32, 'male', false, '2023-07-12T15:45:37.008Z'),
+--	   (uuid_generate_v4(), 'bbbb', 22, 'female', false, '2023-07-12T15:45:37.008Z'),
+--	   (uuid_generate_v4(), 'cccc', 55, 'male', false, '2023-07-12T15:45:37.008Z')
+
+DROP DATABASE postgres
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
