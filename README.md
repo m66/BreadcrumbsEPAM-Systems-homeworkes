@@ -49,10 +49,12 @@ Lesson 1 - To avoid the `.git` file error, it has been converted to a `.gitx` fi
     - [Inside JavaScript Engines, Part 2: code generation and basic optimizations](https://medium.com/@yanguly/inside-javascript-engines-part-2-code-generation-and-basic-optimizations-952bed02db62)
     - [Как работает JS: о внутреннем устройстве V8 и оптимизации](https://habr.com/ru/companies/ruvds/articles/337460/)
     - [JavaScript Modules – How to Create, Import, and Export a Module in JS](https://www.freecodecamp.org/news/javascript-modules/)
+    - [JavaScript SOLID Principles: How to Write Maintainable Code](https://www.syncfusion.com/blogs/post/solid-principles-in-javascript.aspx)
 
 - Node JS
     - [Introduction](https://www.tutorialspoint.com/nodejs/nodejs_introduction.htm)
     - [Introduction](https://www.geeksforgeeks.org/introduction-to-node-js/)
+    - [Bulletproof node.js project architecture](https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf)
 
 - Modules
     - [Modules: CommonJS modules](https://nodejs.org/api/modules.html#modules-commonjs-modules)
@@ -121,6 +123,18 @@ Lesson 1 - To avoid the `.git` file error, it has been converted to a `.gitx` fi
 
 - PostgreSQL
     - [PostgreSQL 15.3 Documentation](https://www.postgresql.org/docs/current/)
+    - [PostgreSQL Exercises, Practice, Solution](https://www.w3resource.com/postgresql-exercises/)
+    - [Mock data generator](https://www.mockaroo.com/)
 
 - TypeORM
     - [TypeORM](https://typeorm.io/)
+
+- Testing
+    - [What Is SDLC? Understand the Software Development Life Cycle](https://stackify.com/what-is-sdlc/)
+    - [The Testing Pyramid: Simplified for One and All](https://www.headspin.io/blog/the-testing-pyramid-simplified-for-one-and-all)
+    - [Unit Testing: A Comprehensive Guide](https://www.headspin.io/blog/unit-testing-guide)
+    - [How does code quality fit into your CI/CD pipeline?](https://blog.codacy.com/code-quality-ci-cd-pipeline/#:~:text=CI%2FCD%20and%20code%20quality,changes%20to%20a%20creation%20framework.)
+    - [Arrange, Act and Assert Pattern: The Three A’s of Unit Testing](https://robertmarshall.dev/blog/arrange-act-and-assert-pattern-the-three-as-of-unit-testing/)
+    - [Jest](https://jestjs.io/docs/getting-started)
+    - [What is Test Driven Development (TDD)?](https://www.browserstack.com/guide/what-is-test-driven-development#:~:text=Test%2Ddriven%20development%20(TDD)%20is%20a%20software%20development%20practice,and%20then%20refactoring%20the%20code.)
+    - [What is faking vs. mocking vs. stubbing?](https://www.educative.io/answers/what-is-faking-vs-mocking-vs-stubbing)
